@@ -1,0 +1,64 @@
+:root {
+    --forest-green: #04553D;
+    --maize: #FEF1D4;
+    --burgandy: #6D1F18;
+    --pecan: #CC9964;
+}
+
+.btn-danger {
+    background-color: var(--burgandy) !important;
+}
+
+.btn-success {
+    background-color: var(--forest-green) !important;
+}
+
+.btn-secondary {
+    background-color: var(--pecan) !important;
+}
+
+.btn-light {
+    background-color: var(--maize) !important;
+}
+
+.btn {
+    width: 100%;
+    height: 100px;
+    filter: brightness(100%);
+    border-radius: 0px;
+    border: 2px solid black;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn:hover {
+    border: 2px solid white !important;
+    filter: brightness(125%);
+}
+
+.btn:active {
+    filter: brightness(150%);
+}
+
+.btn-light:hover {
+    filter: brightness(105%);
+}
+
+.btn-light:active {
+    filter: brightness(110%);
+}
+
+.btn-secondary:hover {
+    filter: brightness(110%);
+}
+
+.btn-secondary:active {
+    filter: brightness(120%);
+}
+
+.no-transition {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
