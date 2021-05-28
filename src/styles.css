@@ -80,7 +80,7 @@
     height: var(--display-font-size);
     font-size: var(--display-font-size);
     line-height: var(--display-font-size);
-    
+
     overflow-x: hidden;
     white-space: nowrap;
     resize: none;
