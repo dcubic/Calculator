@@ -3,6 +3,7 @@
     --maize: #FEF1D4;
     --burgandy: #6D1F18;
     --pecan: #CC9964;
+    --display-font-size: 40px;
 }
 
 .btn-danger {
@@ -26,13 +27,12 @@
     height: 100px;
     filter: brightness(100%);
     border-radius: 0px;
-    border: 2px solid black;
+    border: 2px solid black !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
 .btn:hover {
-    border: 2px solid white !important;
     filter: brightness(125%);
 }
 
@@ -61,4 +61,42 @@
     -moz-transition: none;
     -o-transition: none;
     transition: none;
+}
+
+.form-group {
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    /* padding-top: 10px; */
+}
+
+.text-area {
+    background-color: black !important;
+    color: white !important;
+    resize: none;
+    border: none;
+    direction: rtl;
+    padding: 0px;
+    width: 100%;
+
+    height: var(--display-font-size);
+    font-size: var(--display-font-size);
+    line-height: var(--display-font-size);
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.pecan-font-color {
+    color: var(--pecan) !important;
+}
+
+.text-area:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.form {
+    height: 100px;
+    width: 100%;
 }
