@@ -16,8 +16,6 @@ export class Calculator extends React.Component {
     }
 
     handleButtonClick(event) {
-        // console.log(event.target.value);
-        // console.log();
         let inputValue = event.target.value;
         let stateNext = determineNextState(this.state, inputValue);
         this.setState(stateNext);
@@ -33,7 +31,7 @@ export class Calculator extends React.Component {
                                 
                             </textarea>
                             <textarea id="input-display" className="text-area" readOnly={true}>
-                                
+
                             </textarea>
                         </Container>
                     </Form.Group>
@@ -45,7 +43,7 @@ export class Calculator extends React.Component {
                         </Button>
                     </Col>
                     <Col>
-                        <Button id="multiply" className="no-transition" variant="secondary" value="x" onClick={this.handleButtonClick}>
+                        <Button id="multiply" className="no-transition" variant="secondary" value="*" onClick={this.handleButtonClick}>
                             x
                         </Button>
                     </Col>

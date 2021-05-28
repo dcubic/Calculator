@@ -85,23 +85,56 @@ describe("StateModifier Test Suite", () => {
     });
 
     it("Operation Pressed: / at the start of the string with previous result", () => {
+        let stateInitial = {
+            result: "99",
+            input: ""
+        };
+        let input = "/";
+        let stateExpected = {
+            result: "99",
+            input: input
+        };
 
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
     });
 
     it("Operation Pressed: + at the start of the string with previous result", () => {
-
+        let stateInitial = {
+            result: "99",
+            input: ""
+        };
+        let input = "+";
+        let stateExpected = {
+            result: "99",
+            input: input
+        };
+        
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
     });
 
     it("Operation Pressed: x at the start of the string with previous result", () => {
-
+        let stateInitial = {
+            result: "99",
+            input: ""
+        };
+        let input = "*";
+        let stateExpected = {
+            result: "99",
+            input: input
+        };
+        
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
     });
 
     it("Operation Pressed: double x", () => {
         let stateInitial = {
             result: "",
-            input: "5x"
+            input: "5*"
         };
-        let input = "x";
+        let input = "*";
         let stateExpected = stateInitial;
 
         let stateActual = determineNextState(stateInitial, input);
@@ -135,10 +168,13 @@ describe("StateModifier Test Suite", () => {
     it("Operation Pressed: double - not at start of string", () => {
         let stateInitial = {
             result: "",
-            input: "5x"
+            input: "5-"
         };
-        let input = "x";
-        let stateExpected = stateInitial;
+        let input = "-";
+        let stateExpected = {
+            result: "",
+            input: "5--"
+        }
 
         let stateActual = determineNextState(stateInitial, input);
         expect(stateActual).to.deep.equal(stateExpected);
@@ -151,7 +187,7 @@ describe("StateModifier Test Suite", () => {
         };
         let input = "0";
         let stateExpected = {
-            result: "0",
+            result: "",
             input: "0"
         }
 
@@ -180,6 +216,21 @@ describe("StateModifier Test Suite", () => {
         let stateExpected = {
             result: "",
             input: "10"
+        }
+
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
+    });
+
+    it("Digit Pressed: double 0 mid string before decimal", () => {
+        let stateInitial = {
+            result: "",
+            input: "110"
+        };
+        let input = "0";
+        let stateExpected = {
+            result: "",
+            input: "110"
         }
 
         let stateActual = determineNextState(stateInitial, input);
@@ -216,6 +267,21 @@ describe("StateModifier Test Suite", () => {
         expect(stateActual).to.deep.equal(stateExpected);
     });
 
+    it("Dot Pressed: non-empty string with no decimals", () => {
+        let stateInitial = {
+            result: "",
+            input: "abcdefgh"
+        }
+        let input = ".";
+        let stateExpected = {
+            result: "",
+            input: stateInitial.input.concat(input)
+        }
+
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
+    });
+
     it("Dot Pressed: empty string", () => {
         let stateInitial = {
             result: "",
@@ -243,10 +309,22 @@ describe("StateModifier Test Suite", () => {
         expect(stateActual).to.deep.equal(stateExpected);
     });
 
+    it("Equals Pressed: empty input", () => {
+        let stateInitial = {
+            result: "123",
+            input: ""
+        };
+        let input = "=";
+        let stateExpected = stateInitial;
+
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
+    });
+
     it("Equals Pressed: string terminates with x", () => {
         let stateInitial = {
             result: "",
-            input: "123x"
+            input: "123*"
         };
         let input = "=";
         let stateExpected = stateInitial;
@@ -291,7 +369,7 @@ describe("StateModifier Test Suite", () => {
         expect(stateActual).to.deep.equal(stateExpected);
     });
 
-    it("Equals Pressed: result same as input", () => {
+    it("Equals Pressed: no result yet", () => {
         let stateInitial = {
             result: "",
             input: "1+9"
@@ -316,7 +394,23 @@ describe("StateModifier Test Suite", () => {
         let input = "=";
         let stateExpected = {
             result: "14",
-            input: "14"
+            input: ""
+        }
+
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
+    });
+
+    it("Equals pressed: no result and subtraction", () => {
+        let stateInitial = {
+            result: "",
+            input: "-4"
+        }
+
+        let input = "=";
+        let stateExpected = {
+            result: "-4",
+            input: ""
         }
 
         let stateActual = determineNextState(stateInitial, input);
