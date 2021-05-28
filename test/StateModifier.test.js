@@ -164,6 +164,18 @@ describe("StateModifier Test Suite", () => {
         let stateActual = determineNextState(stateInitial, input);
         expect(stateActual).to.deep.equal(stateExpected);
     });
+
+    it("Operation Pressed: operator following -", () => {
+        let stateInitial = {
+            result: "",
+            input: "5-"
+        };
+        let input = "+";
+        let stateExpected = stateInitial;
+
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
+    });
     
     it("Operation Pressed: double - not at start of string", () => {
         let stateInitial = {
@@ -230,7 +242,7 @@ describe("StateModifier Test Suite", () => {
         let input = "0";
         let stateExpected = {
             result: "",
-            input: "110"
+            input: "1100"
         }
 
         let stateActual = determineNextState(stateInitial, input);
@@ -262,6 +274,21 @@ describe("StateModifier Test Suite", () => {
             result: "",
             input: "3.0"
         }
+
+        let stateActual = determineNextState(stateInitial, input);
+        expect(stateActual).to.deep.equal(stateExpected);
+    });
+
+    it("Digit Pressed: 0 but in a large positive number", () => {
+        let stateInitial = {
+            result: "",
+            input: "1000000"
+        };
+        let input = "0";
+        let stateExpected = {
+            result: "",
+            input: "10000000"
+        };
 
         let stateActual = determineNextState(stateInitial, input);
         expect(stateActual).to.deep.equal(stateExpected);

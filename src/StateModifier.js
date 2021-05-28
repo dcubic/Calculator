@@ -30,7 +30,16 @@ export function determineNextState(stateInitial, inputNext) {
 }
 
 function determineNextStateOperatorsNotSubtract(stateInitial, inputNext) {
-    return null;
+    const resultOld = stateInitial.result;
+    const inputOld = stateInitial.input;
+    if ((inputOld === "" && resultOld === "") || OPERATORS.includes(inputOld[inputOld.length - 1])) {
+        return stateInitial;
+    } else {
+        return {
+            result: resultOld,
+            input: inputOld.concat(inputNext)
+        };
+    }
 }
 
 function determineNextStateNonZeroDigits(stateInitial, inputNext) {
@@ -41,7 +50,23 @@ function determineNextStateNonZeroDigits(stateInitial, inputNext) {
 }
 
 function deterimineNextStateZero(stateInitial) {
-    return null;
+    const inputOld = stateInitial.input;
+    if (inputOld.length > 0 && inputOld[inputOld.length - 1] === ZERO) {
+        const decimalNumberAtEndRegularExpression = /\.[\d]+$/;
+        if (!decimalNumberAtEndRegularExpression.test(inputOld)) {
+            const lastNumberRegularExpression = /\d+$/;
+            const allZerosRegularExpression = /0+$/;
+            const lastNumber = inputOld.match(lastNumberRegularExpression)[0];
+            const lastZeroSequence = inputOld.match(allZerosRegularExpression)[0];
+            if (lastNumber.length === lastZeroSequence.length) {
+                return stateInitial;
+            }
+        }
+    }
+    return {
+        result: stateInitial.result,
+        input: inputOld.concat(ZERO)
+    };
 }
 
 function determineNextStateSubtract(stateInitial) {

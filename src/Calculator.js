@@ -27,11 +27,11 @@ export class Calculator extends React.Component {
                 <Form>
                     <Form.Group controlId="display">
                         <Container fluid style={{ "padding": "0px" }}>
-                            <textarea id="equation-display" className="text-area pecan-font-color" readOnly={true} placeholder="0">
+                            <textarea id="equation-display" className="text-area pecan-font-color" readOnly={true} placeholder="0" value={this.state.result}>
                                 
                             </textarea>
-                            <textarea id="input-display" className="text-area" readOnly={true}>
-
+                            <textarea id="input-display" className="text-area" readOnly={true} value={this.state.input}>
+                                
                             </textarea>
                         </Container>
                     </Form.Group>

@@ -74,17 +74,18 @@
 .text-area {
     background-color: black !important;
     color: white !important;
-    resize: none;
-    border: none;
-    direction: rtl;
     padding: 0px;
     width: 100%;
 
     height: var(--display-font-size);
     font-size: var(--display-font-size);
     line-height: var(--display-font-size);
+    
     overflow-x: hidden;
     white-space: nowrap;
+    resize: none;
+    border: none;
+    text-align: right;
 }
 
 .pecan-font-color {
